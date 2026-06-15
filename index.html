@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision Chronometer | Pro Stopwatch</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Abstract Blue Background Gradients -->
+  <div class="background-glows">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Main Chronometer Card -->
+    <main class="chronometer-card">
+      <header class="app-header">
+        <div class="header-logo">
+          <i class="fa-solid fa-stopwatch logo-icon"></i>
+          <span>Chronos<span class="version">v1.0</span></span>
+        </div>
+        <div class="status-badge" id="status-badge">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Ready</span>
+        </div>
+      </header>
+
+      <!-- Chronometer Display Circle -->
+      <div class="timer-outer-ring" id="timer-ring">
+        <svg class="progress-ring-svg">
+          <!-- Circular track line -->
+          <circle class="progress-ring-track" cx="160" cy="160" r="145"></circle>
+          <!-- Animated neon glowing progress stroke -->
+          <circle class="progress-ring-indicator" id="progress-indicator" cx="160" cy="160" r="145"></circle>
+        </svg>
+        <div class="timer-inner-display">
+          <!-- Main counter readout -->
+          <div class="time-readout" id="display-time">
+            <span class="digits" id="time-hours">00</span><span class="divider">:</span><span class="digits" id="time-minutes">00</span><span class="divider">:</span><span class="digits" id="time-seconds">00</span><span class="milis-divider">.</span><span class="milis" id="time-ms">00</span>
+          </div>
+          <div class="current-lap-delta" id="lap-delta">
+            LAP SPLIT: <span id="delta-time">00:00.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <section class="controls-panel">
+        <button class="btn-ctrl btn-lap" id="btn-lap" disabled title="Record current lap (L)">
+          <i class="fa-solid fa-flag"></i>
+          <span>Lap</span>
+        </button>
+        <button class="btn-ctrl btn-start" id="btn-start" title="Start stopwatch (Space)">
+          <i class="fa-solid fa-play"></i>
+          <span>Start</span>
+        </button>
+        <button class="btn-ctrl btn-reset" id="btn-reset" disabled title="Reset stopwatch (R)">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Reset</span>
+        </button>
+      </section>
+
+      <!-- Keyboard Shortcuts Help Panel -->
+      <footer class="shortcuts-legend">
+        <div class="shortcut-tag"><kbd>Space</kbd> Start / Pause</div>
+        <div class="shortcut-tag"><kbd>L</kbd> Lap</div>
+        <div class="shortcut-tag"><kbd>R</kbd> Reset</div>
+      </footer>
+    </main>
+
+    <!-- Lap History Logger Container -->
+    <aside class="lap-logger-panel hidden" id="laps-panel">
+      <div class="panel-header">
+        <h3><i class="fa-solid fa-list-ol"></i> Lap History</h3>
+        <button class="btn-clear-laps" id="btn-clear-laps" title="Clear all lap entries">
+          <i class="fa-solid fa-trash-can"></i> Clear
+        </button>
+      </div>
+      <div class="table-wrapper">
+        <table class="laps-table">
+          <thead>
+            <tr>
+              <th>Lap</th>
+              <th>Split Time</th>
+              <th>Overall Time</th>
+            </tr>
+          </thead>
+          <tbody id="laps-list">
+            <!-- Programmatically injected rows -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Statistics summary -->
+      <div class="laps-summary">
+        <div class="summary-stat">
+          <span class="stat-lbl"><i class="fa-solid fa-bolt fast-color"></i> Fastest</span>
+          <span class="stat-val" id="fastest-lap-val">-</span>
+        </div>
+        <div class="summary-stat">
+          <span class="stat-lbl"><i class="fa-solid fa-turtle slow-color"></i> Slowest</span>
+          <span class="stat-val" id="slowest-lap-val">-</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
